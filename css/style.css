@@ -1,0 +1,307 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800;900&family=Roboto:wght@900&display=swap");
+html {
+  z-index: -100;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Poppins, sans-serif;
+  color: white;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  margin: none;
+  padding: none;
+}
+
+#canvas {
+  padding: 0;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.navbar {
+  padding: 1em 2em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media screen and (max-width: 900px) {
+  .navbar {
+    padding: 1em 1em;
+  }
+}
+
+.navbar .navbar-brand {
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.navbar .navbar-brand img {
+  width: 75px;
+  height: 75px;
+}
+
+.navbar .navbar-brand .font-lower {
+  font-size: 16px;
+}
+
+.navbar .nav-links {
+  display: inline;
+  width: 100%;
+  text-align: end;
+}
+
+.navbar .nav-links .nav-link {
+  color: white;
+  text-decoration: none;
+  margin-left: 1em;
+}
+
+.square-button {
+  border: none;
+  text-decoration: none;
+  margin-top: 1em;
+  margin-right: 1em;
+  padding: 1em 2em;
+  font-size: 24px;
+  position: relative;
+  background-color: transparent;
+  border: 1px solid white;
+  cursor: pointer;
+  text-align: center;
+}
+
+@media screen and (max-width: 1200px) {
+  .square-button {
+    font-size: 20px;
+  }
+}
+
+.square-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #538a6f;
+  height: 100%;
+  z-index: 1;
+}
+
+.square-button::after {
+  content: "";
+  color: white;
+  position: relative;
+  z-index: 2;
+}
+
+.square-button:hover::before {
+  -webkit-animation: fill 800ms ease-in-out forwards;
+          animation: fill 800ms ease-in-out forwards;
+}
+
+.container {
+  margin: 2em 7em;
+}
+
+@media screen and (max-width: 900px) {
+  .container {
+    margin: 2em;
+  }
+}
+
+.container .heading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media screen and (max-width: 900px) {
+  .container .heading {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
+}
+
+.container .heading .first {
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+}
+
+.container .heading .first div {
+  width: 75%;
+  font-size: 74px;
+  font-weight: 700;
+  word-wrap: break-word;
+  position: relative;
+  -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+          clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  -webkit-animation: reveal 2s ease-in-out 0s forwards;
+          animation: reveal 2s ease-in-out 0s forwards;
+}
+
+.container .heading .first div::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: white;
+  -webkit-animation: revealBlock 2s ease-in-out 0s forwards;
+          animation: revealBlock 2s ease-in-out 0s forwards;
+}
+
+@media screen and (max-width: 1300px) {
+  .container .heading .first div {
+    width: 85%;
+    font-size: 54px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .container .heading .first div {
+    width: 100%;
+    font-size: 36px;
+  }
+}
+
+.container .heading .image {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  text-align: center;
+}
+
+.container .heading .image img {
+  width: 75%;
+}
+
+.container .buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 3em;
+}
+
+@media screen and (max-width: 500px) {
+  .container .buttons {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.container .buttons .visit-blog::after {
+  content: "Visit Blog";
+}
+
+.container .buttons .contact::after {
+  content: "Contact me";
+}
+
+@-webkit-keyframes fill {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes fill {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@-webkit-keyframes reveal {
+  0% {
+    -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+            clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  }
+  90% {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+  100% {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+@keyframes reveal {
+  0% {
+    -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+            clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  }
+  90% {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+  100% {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+@-webkit-keyframes revealBlock {
+  0% {
+    left: -10px;
+  }
+  90% {
+    left: calc(100% - 10px);
+  }
+  100% {
+    left: calc(100% - 10px);
+  }
+}
+
+@keyframes revealBlock {
+  0% {
+    left: -10px;
+  }
+  90% {
+    left: calc(100% - 10px);
+  }
+  100% {
+    left: calc(100% - 10px);
+  }
+}
+/*# sourceMappingURL=style.css.map */

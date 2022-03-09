@@ -1,0 +1,240 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800;900&family=Roboto:wght@900&display=swap");
+
+@mixin responsive($width) {
+	@media screen and (max-width: $width) {
+		@content;
+	}
+}
+
+html {
+	z-index: -100;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Poppins, sans-serif;
+	color: white;
+	user-select: none;
+	overflow-x: hidden;
+}
+
+a {
+	text-decoration: none;
+	margin: none;
+	padding: none;
+}
+
+#canvas {
+	padding: 0;
+	margin: 0;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -1;
+}
+
+.navbar {
+	padding: 1em 2em;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	@include responsive(900px) {
+		padding: 1em 1em;
+	}
+
+	.navbar-brand {
+		font-size: 32px;
+		font-weight: bold;
+		color: white;
+		text-decoration: none;
+		display: flex;
+		align-items: center;
+
+		img {
+			width: 75px;
+			height: 75px;
+		}
+
+		.font-lower {
+			font-size: 16px;
+		}
+	}
+
+	.nav-links {
+		display: inline;
+		width: 100%;
+		text-align: end;
+
+		.nav-link {
+			color: white;
+			text-decoration: none;
+			margin-left: 1em;
+		}
+	}
+}
+
+.square-button {
+	border: none;
+	text-decoration: none;
+
+	margin-top: 1em;
+	margin-right: 1em;
+	padding: 1em 2em;
+	font-size: 24px;
+	position: relative;
+	background-color: transparent;
+	border: 1px solid white;
+	cursor: pointer;
+	text-align: center;
+
+	@include responsive(1200px) {
+		font-size: 20px;
+	}
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		background: #538a6f;
+		height: 100%;
+		z-index: 1;
+	}
+
+	&::after {
+		content: "";
+		color: white;
+		position: relative;
+		z-index: 2;
+	}
+
+	&:hover {
+		&::before {
+			animation: fill 800ms ease-in-out forwards;
+		}
+	}
+}
+
+.container {
+	margin: 2em 7em;
+	// height: 80vh;
+
+	@include responsive(900px) {
+		margin: 2em;
+	}
+
+	.heading {
+		display: flex;
+		align-items: center;
+
+		@include responsive(900px) {
+			flex-direction: column-reverse;
+		}
+
+		.first {
+			flex: 2;
+			div {
+				width: 75%;
+				font-size: 74px;
+				font-weight: 700;
+				word-wrap: break-word;
+				position: relative;
+				clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+				// border: 1px solid red;
+				animation: reveal 2s ease-in-out 0s forwards;
+
+				&::after {
+					content: "";
+					position: absolute;
+					width: 10px;
+					height: 100%;
+					top: 0;
+					left: 0;
+					background-color: white;
+					animation: revealBlock 2s ease-in-out 0s forwards;
+				}
+
+				@include responsive(1300px) {
+					width: 85%;
+					font-size: 54px;
+				}
+
+				@include responsive(900px) {
+					width: 100%;
+					font-size: 36px;
+				}
+			}
+		}
+
+		.image {
+			flex: 1;
+			text-align: center;
+
+			img {
+				width: 75%;
+			}
+		}
+	}
+	.buttons {
+		display: flex;
+		margin-top: 3em;
+
+		@include responsive(500px) {
+			flex-direction: column;
+		}
+
+		.visit-blog {
+			&::after {
+				content: "Visit Blog";
+			}
+		}
+
+		.contact {
+			&::after {
+				content: "Contact me";
+			}
+		}
+	}
+}
+
+@keyframes fill {
+	0% {
+		width: 0%;
+	}
+
+	100% {
+		width: 100%;
+	}
+}
+
+@keyframes reveal {
+	0% {
+		clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+	}
+
+	90% {
+		clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+	}
+
+	100% {
+		clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+	}
+}
+
+@keyframes revealBlock {
+	0% {
+		left: -10px;
+	}
+
+	90% {
+		left: calc(100% - 10px);
+	}
+
+	100% {
+		left: calc(100% - 10px);
+		// width: 10px;
+	}
+}
