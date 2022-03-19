@@ -1,4 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800;900&family=Roboto:wght@900&display=swap");
+@import "animation";
+
+$background: rgb(25, 25, 25);
+$color-light: #7c83fd;
+$color-dark: #96baff;
 
 @mixin responsive($width) {
 	@media screen and (max-width: $width) {
@@ -20,6 +25,10 @@ body {
 	overflow-x: hidden;
 }
 
+body {
+	background: $background;
+}
+
 a {
 	text-decoration: none;
 	margin: none;
@@ -29,10 +38,15 @@ a {
 #canvas {
 	padding: 0;
 	margin: 0;
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	z-index: -1;
+	height: 100vh;
+}
+
+#home {
+	min-height: 100vh;
 }
 
 .navbar {
@@ -102,6 +116,8 @@ a {
 		background: #538a6f;
 		height: 100%;
 		z-index: 1;
+		transition-duration: 800ms;
+		width: 0%;
 	}
 
 	&::after {
@@ -113,14 +129,13 @@ a {
 
 	&:hover {
 		&::before {
-			animation: fill 800ms ease-in-out forwards;
+			width: 100%;
 		}
 	}
 }
 
 .container {
 	margin: 2em 7em;
-	// height: 80vh;
 
 	@include responsive(900px) {
 		margin: 2em;
@@ -136,26 +151,20 @@ a {
 
 		.first {
 			flex: 2;
-			div {
+			h1 {
 				width: 75%;
 				font-size: 74px;
-				font-weight: 700;
+				font-weight: 900;
 				word-wrap: break-word;
 				position: relative;
-				clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-				// border: 1px solid red;
-				animation: reveal 2s ease-in-out 0s forwards;
-
-				&::after {
-					content: "";
-					position: absolute;
-					width: 10px;
-					height: 100%;
-					top: 0;
-					left: 0;
-					background-color: white;
-					animation: revealBlock 2s ease-in-out 0s forwards;
-				}
+				color: white;
+				text-shadow: -1px -1px 1px $color-light,
+					-1px 1px 1px $color-light, 1px -1px 1px $color-light,
+					1px 1px 1px $color-light, 0 0 3px $color-light,
+					0 0 10px $color-light, 0 0 20px $color-light,
+					0 0 30px $color-dark, 0 0 40px $color-dark,
+					0 0 50px $color-dark, 0 0 70px $color-dark,
+					0 0 100px $color-dark, 0 0 200px $color-dark;
 
 				@include responsive(1300px) {
 					width: 85%;
@@ -167,6 +176,14 @@ a {
 					font-size: 36px;
 				}
 			}
+
+			h3 {
+				font-size: 32px;
+				font-weight: 500;
+				color: grey;
+				margin: 0;
+				padding: 0;
+			}
 		}
 
 		.image {
@@ -175,12 +192,14 @@ a {
 
 			img {
 				width: 75%;
+				border-radius: 50%;
 			}
 		}
 	}
 	.buttons {
 		display: flex;
 		margin-top: 3em;
+		margin-bottom: 5em;
 
 		@include responsive(500px) {
 			flex-direction: column;
@@ -200,47 +219,129 @@ a {
 	}
 }
 
-@keyframes fill {
-	0% {
-		width: 0%;
+#skills {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	h1 {
+		font-size: 42px;
+		margin: 0;
+		padding: 0;
 	}
 
-	100% {
+	h3 {
+		// font-size: 32px;
+		margin-bottom: 5em;
+		color: grey;
+	}
+
+	.skills {
+		display: flex;
+		align-items: center;
+		justify-content: space-evenly;
 		width: 100%;
-	}
-}
+		padding: 0 0 5em 0em;
 
-@keyframes reveal {
-	0% {
-		clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-	}
+		.heading {
+			flex: 1;
+			text-align: center;
+			transform: rotateZ(-90deg);
 
-	90% {
-		clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-	}
+			h1 {
+				font-size: 42px;
+				font-weight: bolder;
+				position: relative;
 
-	100% {
-		clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-	}
-}
+				&::after {
+					content: "";
+					position: absolute;
+					top: 100%;
+					left: 50%;
+					transform: translate(-50%);
+					width: 50%;
+					height: 5px;
+					background: white;
+				}
+			}
+		}
+		.d-grid {
+			display: grid;
+			grid-template-columns: auto auto auto auto;
+			grid-gap: 3em;
+			flex: 6;
+			margin-right: 7em;
 
-@keyframes revealBlock {
-	0% {
-		left: -10px;
-	}
+			.grid-image {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				border-radius: 10px;
+				box-shadow: 0 0 25px 1px black;
+				width: 300px;
+				height: 300px;
+				perspective: 3;
+				transition-duration: 400ms;
+				position: relative;
+				transform-style: preserve-3d;
+				backface-visibility: hidden;
 
-	90% {
-		left: calc(100% - 10px);
-	}
+				&::before {
+					content: attr(data-content);
+					box-shadow: 0 0 25px 1px black;
+					display: grid;
+					place-items: center;
+					text-align: center;
+					font-weight: 500;
+					// padding: 0 1em;
+					font-size: 20px;
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					border-radius: 10px;
+					transform: rotateY(180deg);
+					backface-visibility: hidden;
+				}
 
-	100% {
-		left: calc(100% - 10px);
-		// width: 10px;
+				&:hover {
+					transform: rotateY(180deg);
+				}
+
+				h3 {
+					margin: 0;
+					padding-top: 1em;
+				}
+
+				img {
+					// width: 125px;
+					height: 200px;
+				}
+
+				.invert {
+					filter: invert(1);
+				}
+			}
+		}
 	}
 }
 
 #blogs {
-	.blogs {
-		column-count: 4;
+	display: flex;
+	flex-direction: column;
+	// justify-content: center;
+	align-items: center;
+
+	h1 {
+		font-size: 42px;
+		margin: 0;
+		padding: 0;
+	}
+
+	h3 {
+		margin-bottom: 5em;
+		color: grey;
 	}
 }

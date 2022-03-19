@@ -3,29 +3,37 @@ var c = canvas.getContext("2d");
 
 const circles = [];
 const colors = ["#B5EAEA", "#EDF6E5", "#FFBCBC", "#F38BA0"];
-const bgColors = ["#191919", "#2D4263", "#C84B31", "#7A0BC0"];
+// const bgColors = ["#191919", "#2D4263", "#C84B31", "#7A0BC0"];
+const bgColors = ["#FFFFFF"];
 
 let bgColor = 0,
-	bgCircle,
+	bgCircles = [],
 	prevBgColor = 0;
 
 canvas.height = window.innerHeight;
 canvas.width = window.innerWidth;
 
 class BackgroundCircle {
-	constructor(x, y, radius, color, growRate = 5) {
+	constructor(x, y, radius, color, growRate = 5, stroked = true) {
 		this.x = x;
 		this.y = y;
 		this.radius = radius;
 		this.color = color;
 		this.growRate = growRate;
+		this.stroked = stroked;
 	}
 
 	draw() {
 		c.fillStyle = this.color;
+		c.strokeStyle = this.color;
+		c.lineWidth = 10;
 		c.beginPath();
 		c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-		c.fill();
+		if (this.stroked) {
+			c.stroke();
+		} else {
+			c.fill();
+		}
 	}
 
 	isDone() {
@@ -159,26 +167,22 @@ function fireCircles(e) {
 	}
 	prevBgColor = bgColor;
 	bgColor = bgColor + 1 >= bgColors.length ? 0 : bgColor + 1;
-	bgCircle = new BackgroundCircle(
-		e.clientX,
-		e.clientY,
-		0,
-		bgColors[bgColor],
-		20
+	bgCircles.push(
+		new BackgroundCircle(e.clientX, e.clientY, 0, bgColors[bgColor], 20)
 	);
 }
 
 function animate() {
-	c.fillStyle = bgColors[prevBgColor];
-	c.fillRect(0, 0, canvas.width, canvas.height);
+	// c.fillStyle = bgColors[prevBgColor];
+	// c.fillRect(0, 0, canvas.width, canvas.height);
+	c.clearRect(0, 0, canvas.width, canvas.height);
 
 	// if(!bgCircle?.isDone()){
 	//     document.body.style.backgroundColor = bgColors[bgColor];
 	// }
-
-	if (bgCircle) {
-		bgCircle.draw();
-		bgCircle.animate();
+	for (var i = 0; i < bgCircles.length; i++) {
+		bgCircles[i].draw();
+		bgCircles[i].animate();
 	}
 
 	for (var i = 0; i < circles.length; i++) {
