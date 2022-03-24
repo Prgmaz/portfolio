@@ -31,8 +31,8 @@ body {
 
 a {
 	text-decoration: none;
-	margin: none;
-	padding: none;
+	margin: 0;
+	padding: 0;
 }
 
 #canvas {
@@ -47,8 +47,16 @@ a {
 
 #home {
 	min-height: 100vh;
+	position: relative;
 }
 
+.p-absolute {
+	position: absolute;
+	width: 100%;
+	opacity: 0.25;
+	bottom: 0%;
+	left: 0;
+}
 .navbar {
 	padding: 1em 2em;
 	display: flex;
@@ -138,7 +146,9 @@ a {
 	margin: 2em 7em;
 
 	@include responsive(900px) {
-		margin: 2em;
+		// margin: 2em;
+		padding: 2em;
+		margin: 0 2em;
 	}
 
 	.heading {
@@ -193,10 +203,21 @@ a {
 		.image {
 			flex: 1;
 			text-align: center;
+			position: relative;
+			align-items: center;
+			justify-content: center;
 
 			img {
-				width: 75%;
+				width: 90%;
 				border-radius: 50%;
+
+				// &:nth-of-type(even) {
+				// 	position: absolute;
+				// 	top: 0;
+				// 	left: 0;
+				// 	z-index: -1;
+				// 	width: 100%;
+				// }
 			}
 		}
 	}
@@ -228,6 +249,11 @@ a {
 	flex-direction: column;
 	align-items: center;
 	padding: 0 1em;
+	position: relative;
+
+	.p-absolute {
+		top: 0%;
+	}
 
 	h1 {
 		font-size: 42px;
@@ -379,19 +405,59 @@ a {
 #blogs {
 	display: flex;
 	flex-direction: column;
-	// justify-content: center;
 	align-items: center;
-	padding: 0 1em;
+	position: relative;
+	overflow: hidden;
 
-	h1 {
-		font-size: 42px;
-		margin: 0;
-		padding: 0;
+	.p-absolute {
+		top: 0;
+		z-index: -1;
+		width: 120%;
+		// height: 100%;
+
+		@include responsive(1000px) {
+			display: none;
+		}
 	}
 
-	h3 {
-		margin-bottom: 5em;
-		color: grey;
+	.headings {
+		padding: 1em;
 		text-align: center;
+		h1 {
+			font-size: 42px;
+			margin: 0;
+			padding: 0;
+		}
+
+		h3 {
+			margin-bottom: 5em;
+			color: grey;
+			text-align: center;
+		}
+	}
+
+	.blogs {
+		column-count: 2;
+		column-gap: 2em;
+		padding: 0 5em;
+
+		@include responsive(1000px) {
+			column-count: 1;
+		}
+
+		.card {
+			width: 100%;
+			padding-bottom: 2em;
+			border-radius: 15px;
+
+			a {
+				// height: 300px;
+				img {
+					width: 100%;
+					height: auto;
+					border-radius: 15px;
+				}
+			}
+		}
 	}
 }
