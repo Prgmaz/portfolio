@@ -183,7 +183,7 @@ a {
 
 				@include responsive(900px) {
 					width: 100%;
-					font-size: 48px;
+					font-size: 42px;
 				}
 			}
 
@@ -374,6 +374,10 @@ a {
 					border-radius: 10px;
 					transform: rotateY(180deg);
 					backface-visibility: hidden;
+
+					@include responsive(1000px) {
+						font-size: 12px;
+					}
 				}
 
 				&:hover {
@@ -420,6 +424,10 @@ a {
 		}
 	}
 
+	.bottom-0 {
+		bottom: 0;
+	}
+
 	.headings {
 		padding: 1em;
 		text-align: center;
@@ -427,12 +435,20 @@ a {
 			font-size: 42px;
 			margin: 0;
 			padding: 0;
+
+			@include responsive(900px) {
+				font-size: 32px;
+			}
 		}
 
 		h3 {
 			margin-bottom: 5em;
 			color: grey;
 			text-align: center;
+
+			@include responsive(900px) {
+				font-size: 16px;
+			}
 		}
 	}
 
@@ -441,8 +457,9 @@ a {
 		column-gap: 2em;
 		padding: 0 5em;
 
-		@include responsive(1000px) {
+		@include responsive(900px) {
 			column-count: 1;
+			padding: 0 2em;
 		}
 
 		.card {
@@ -457,6 +474,86 @@ a {
 					height: auto;
 					border-radius: 15px;
 				}
+			}
+		}
+	}
+}
+
+footer {
+	position: relative;
+	height: 600px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+
+	.p-absolute {
+		z-index: -1;
+	}
+
+	.footer-brand {
+		font-size: 24px;
+		font-weight: bold;
+		color: white;
+		text-decoration: none;
+		text-align: center;
+
+		@include responsive(600px) {
+			font-size: 16px;
+		}
+
+		.m-5 {
+			margin: 0 5% 5% 5%;
+			font-size: 32px;
+			a {
+				color: grey;
+				transition-duration: 400ms;
+				&:hover {
+					color: rgb(110, 110, 202);
+				}
+			}
+
+			.font-lower {
+				font-size: 20px;
+				font-weight: normal;
+
+				@include responsive(600px) {
+					font-size: 16px;
+				}
+			}
+		}
+
+		img {
+			width: 200px;
+		}
+	}
+
+	.footer-links {
+		margin-top: 2em;
+		display: flex;
+		align-items: center;
+		justify-content: space-evenly;
+		width: 50%;
+		border: 5px solid white;
+		padding: 1em;
+
+		@include responsive(1000px) {
+			width: 75%;
+		}
+
+		.footer-link {
+			font-size: 24px;
+			color: #cfcfcf;
+			// text-decoration: underline;
+			font-weight: bolder;
+			transition-duration: 400ms;
+
+			@include responsive(600px) {
+				font-size: 16px;
+			}
+
+			&:hover {
+				color: rgb(110, 110, 202);
 			}
 		}
 	}
