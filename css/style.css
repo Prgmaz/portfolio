@@ -191,7 +191,7 @@ a {
 @media screen and (max-width: 900px) {
   .container .heading .first h1 {
     width: 100%;
-    font-size: 36px;
+    font-size: 48px;
   }
 }
 
@@ -201,6 +201,12 @@ a {
   color: grey;
   margin: 0;
   padding: 0;
+}
+
+@media screen and (max-width: 500px) {
+  .container .heading .first h3 {
+    font-size: 20px;
+  }
 }
 
 .container .heading .image {
@@ -251,6 +257,7 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding: 0 1em;
 }
 
 #skills h1 {
@@ -259,9 +266,22 @@ a {
   padding: 0;
 }
 
+@media screen and (max-width: 500px) {
+  #skills h1 {
+    font-size: 32px;
+  }
+}
+
 #skills h3 {
   margin-bottom: 5em;
   color: grey;
+  text-align: center;
+}
+
+@media screen and (max-width: 500px) {
+  #skills h3 {
+    font-size: 16px;
+  }
 }
 
 #skills .skills {
@@ -285,6 +305,12 @@ a {
   text-align: center;
   -webkit-transform: rotateZ(-90deg);
           transform: rotateZ(-90deg);
+}
+
+@media screen and (max-width: 900px) {
+  #skills .skills .heading {
+    display: none;
+  }
 }
 
 #skills .skills .heading h1 {
@@ -317,6 +343,37 @@ a {
   margin-right: 7em;
 }
 
+@media screen and (max-width: 1700px) {
+  #skills .skills .d-grid {
+    -ms-grid-columns: auto auto auto;
+        grid-template-columns: auto auto auto;
+    place-items: center;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  #skills .skills .d-grid {
+    -ms-grid-columns: auto auto;
+        grid-template-columns: auto auto;
+    place-items: center;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  #skills .skills .d-grid {
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #skills .skills .d-grid {
+    -ms-grid-columns: auto;
+        grid-template-columns: auto;
+    margin-right: 0;
+    place-items: center;
+  }
+}
+
 #skills .skills .d-grid .grid-image {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -345,6 +402,14 @@ a {
           transform-style: preserve-3d;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
+  padding: 1em;
+}
+
+@media screen and (max-width: 800px) {
+  #skills .skills .d-grid .grid-image {
+    height: 200px;
+    width: 200px;
+  }
 }
 
 #skills .skills .d-grid .grid-image::before {
@@ -380,7 +445,16 @@ a {
 }
 
 #skills .skills .d-grid .grid-image img {
-  height: 200px;
+  height: 100%;
+}
+
+@media screen and (max-width: 500px) {
+  #skills .skills .d-grid .grid-image img {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
 }
 
 #skills .skills .d-grid .grid-image .invert {
@@ -399,6 +473,7 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding: 0 1em;
 }
 
 #blogs h1 {
@@ -410,5 +485,6 @@ a {
 #blogs h3 {
   margin-bottom: 5em;
   color: grey;
+  text-align: center;
 }
 /*# sourceMappingURL=style.css.map */

@@ -3,8 +3,16 @@ var c = canvas.getContext("2d");
 
 const circles = [];
 const colors = ["#B5EAEA", "#EDF6E5", "#FFBCBC", "#F38BA0"];
+const bubbleColors = [
+	"rgba(40, 255, 191, 0.25)",
+	"rgba(188, 255, 185, 0.25)",
+	"rgba(245, 253, 176, 0.25)",
+	"rgba(247, 230, 173, 0.25)",
+];
 // const bgColors = ["#191919", "#2D4263", "#C84B31", "#7A0BC0"];
 const bgColors = ["#FFFFFF"];
+const nBubbles = 10;
+const nCircles = 25;
 
 let bgColor = 0,
 	bgCircles = [],
@@ -126,6 +134,53 @@ class Circle {
 	}
 }
 
+class Bubble {
+	constructor(x, y, radius, width, color, moveRate = 5, stroked = false) {
+		this.x = x;
+		this.y = y;
+		this.dx = Math.random() * 25;
+		this.width = width;
+		this.radius = radius;
+		this.color = color;
+		this.moveRate = moveRate;
+		this.stroked = stroked;
+	}
+
+	move(dx, dy) {
+		this.x += Math.sin(this.dx);
+		this.y += Math.abs(Math.cos(this.moveRate)) * dy;
+	}
+
+	draw() {
+		if (this.isVisible()) {
+			c.beginPath();
+			c.fillStyle = this.color;
+			c.strokeStyle = this.color;
+			c.lineWidth = this.width;
+			c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+			if (this.stroked) {
+				c.stroke();
+			} else {
+				c.fill();
+			}
+		}
+	}
+
+	isVisible() {
+		return this.radius > 0;
+	}
+
+	animate() {
+		if (this.radius * 2 + this.y > 0) {
+			this.move(this.moveRate, -this.moveRate * Math.random() - 2.5);
+			this.dx += 0.01;
+		} else {
+			this.y = canvas.height + Math.random() * 5 + this.radius;
+			this.x = Math.random() * canvas.width;
+		}
+	}
+}
+
 function init() {
 	// document.body.style.backgroundColor = bgColors[prevBgColor];
 
@@ -137,11 +192,27 @@ function init() {
 	window.addEventListener("click", fireCircles);
 	// window.addEventListener("touchend", fireCircles);
 
+	for (var i = 0; i < nBubbles; i++) {
+		circles.push(
+			new Bubble(
+				Math.random() * canvas.width,
+				Math.random() * canvas.height,
+				Math.random() * 25 + 10,
+				10,
+				bubbleColors[
+					Math.round(Math.random() * (bubbleColors.length - 1))
+				],
+				5,
+				Math.round(Math.random())
+			)
+		);
+	}
+
 	animate();
 }
 
 function fireCircles(e) {
-	for (var i = 0; i < 25; i++) {
+	for (var i = 0; i < nCircles; i++) {
 		const x = e.clientX;
 		const y = e.clientY;
 		const radius = 25 * Math.random() + 25;
@@ -165,6 +236,7 @@ function fireCircles(e) {
 
 		circles.push(circle);
 	}
+
 	prevBgColor = bgColor;
 	bgColor = bgColor + 1 >= bgColors.length ? 0 : bgColor + 1;
 	bgCircles.push(

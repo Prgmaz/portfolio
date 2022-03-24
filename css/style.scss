@@ -173,7 +173,7 @@ a {
 
 				@include responsive(900px) {
 					width: 100%;
-					font-size: 36px;
+					font-size: 48px;
 				}
 			}
 
@@ -183,6 +183,10 @@ a {
 				color: grey;
 				margin: 0;
 				padding: 0;
+
+				@include responsive(500px) {
+					font-size: 20px;
+				}
 			}
 		}
 
@@ -223,17 +227,27 @@ a {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	padding: 0 1em;
 
 	h1 {
 		font-size: 42px;
 		margin: 0;
 		padding: 0;
+
+		@include responsive(500px) {
+			font-size: 32px;
+		}
 	}
 
 	h3 {
 		// font-size: 32px;
 		margin-bottom: 5em;
 		color: grey;
+		text-align: center;
+
+		@include responsive(500px) {
+			font-size: 16px;
+		}
 	}
 
 	.skills {
@@ -247,6 +261,10 @@ a {
 			flex: 1;
 			text-align: center;
 			transform: rotateZ(-90deg);
+
+			@include responsive(900px) {
+				display: none;
+			}
 
 			h1 {
 				font-size: 42px;
@@ -272,6 +290,26 @@ a {
 			flex: 6;
 			margin-right: 7em;
 
+			@include responsive(1700px) {
+				grid-template-columns: auto auto auto;
+				place-items: center;
+			}
+
+			@include responsive(1300px) {
+				grid-template-columns: auto auto;
+				place-items: center;
+			}
+
+			@include responsive(900px) {
+				margin-right: 0;
+			}
+
+			@include responsive(500px) {
+				grid-template-columns: auto;
+				margin-right: 0;
+				place-items: center;
+			}
+
 			.grid-image {
 				display: flex;
 				flex-direction: column;
@@ -286,6 +324,12 @@ a {
 				position: relative;
 				transform-style: preserve-3d;
 				backface-visibility: hidden;
+				padding: 1em;
+
+				@include responsive(800px) {
+					height: 200px;
+					width: 200px;
+				}
 
 				&::before {
 					content: attr(data-content);
@@ -317,7 +361,11 @@ a {
 
 				img {
 					// width: 125px;
-					height: 200px;
+					height: 100%;
+
+					@include responsive(500px) {
+						flex-direction: column;
+					}
 				}
 
 				.invert {
@@ -333,6 +381,7 @@ a {
 	flex-direction: column;
 	// justify-content: center;
 	align-items: center;
+	padding: 0 1em;
 
 	h1 {
 		font-size: 42px;
@@ -343,5 +392,6 @@ a {
 	h3 {
 		margin-bottom: 5em;
 		color: grey;
+		text-align: center;
 	}
 }
